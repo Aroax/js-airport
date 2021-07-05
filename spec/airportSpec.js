@@ -49,4 +49,10 @@ describe('Airport', () => {
     expect(() => {
       airport.clearForTakeoff(plane); }).toThrowError('cannot take off during a storm');
   });
+
+  it('prevents takeoff during stormy weather', () => {
+    spyOn(airport, 'isStormy').and.returnValue(true);
+    expect(() => {
+      airport.clearForLanding(plane); }).toThrowError('cannot land during a storm');
+  });
 });
